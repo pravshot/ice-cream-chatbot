@@ -1,0 +1,333 @@
+version: "3.1"
+
+stories:
+
+- story: straightforward path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: buy_ic
+  - action: utter_form_instructions
+  - action: ic_form
+  - active_loop: ic_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Praveen
+  - slot_was_set:
+    - requested_slot: ic_type
+  - slot_was_set:
+    - ic_type: cone
+  - slot_was_set:
+    - requested_slot: ic_size
+  - slot_was_set:
+    - ic_size: small
+  - slot_was_set:
+    - requested_slot: ic_flavors
+  - slot_was_set:
+    - ic_flavors: [chocolate]
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_order
+  - action: action_show_order_summary
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: straightforward path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: buy_ic
+  - action: utter_form_instructions
+  - action: ic_form
+  - active_loop: ic_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Tom Brady
+  - slot_was_set:
+    - requested_slot: ic_type
+  - slot_was_set:
+    - ic_type: cup
+  - slot_was_set:
+    - requested_slot: ic_size
+  - slot_was_set:
+    - ic_size: large
+  - slot_was_set:
+    - requested_slot: ic_flavors
+  - slot_was_set:
+    - ic_flavors: [mint, rocky road]
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_order
+  - action: action_show_order_summary
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: messy path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: buy_ic
+  - action: utter_form_instructions
+  - action: ic_form
+  - active_loop: ic_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Logan
+  - slot_was_set:
+    - requested_slot: ic_type
+  - slot_was_set:
+    - ic_type: cone
+  - slot_was_set:
+    - requested_slot: ic_size
+  - slot_was_set:
+    - ic_size: small
+  - slot_was_set:
+    - requested_slot: ic_flavors
+  - slot_was_set:
+    - ic_flavors: [pistachio]
+  - slot_was_set:
+    - ic_flavors: null
+  - slot_was_set:
+    - requested_slot: ic_flavors
+  - slot_was_set:
+    - ic_flavors: [strawberry, chocolate]
+  - slot_was_set:
+    - ic_flavors: null
+  - slot_was_set:
+    - requested_slot: ic_flavors
+  - slot_was_set:
+    - ic_flavors: [rocky road]
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_order
+  - action: action_show_order_summary
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: messy path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: buy_ic
+  - action: utter_form_instructions
+  - action: ic_form
+  - active_loop: ic_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Tom Holland
+  - slot_was_set:
+    - requested_slot: ic_type
+  - slot_was_set:
+    - ic_type: cup
+  - slot_was_set:
+    - requested_slot: ic_size
+  - slot_was_set:
+    - ic_size: medium
+  - slot_was_set:
+    - ic_size: null
+  - slot_was_set:
+    - requested_slot: ic_size
+  - slot_was_set:
+    - ic_size: small
+  - slot_was_set:
+    - requested_slot: ic_flavors
+  - slot_was_set:
+    - ic_flavors: []
+  - slot_was_set:
+    - ic_flavors: null
+  - slot_was_set:
+    - requested_slot: ic_flavors
+  - slot_was_set:
+    - ic_flavors: [rocky road]
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_order
+  - action: action_show_order_summary
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: messy path 3
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: buy_ic
+  - action: utter_form_instructions
+  - action: ic_form
+  - active_loop: ic_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: null
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Logan Saul
+  - slot_was_set:
+    - requested_slot: ic_type
+  - slot_was_set:
+    - ic_type: cone
+  - slot_was_set:
+    - requested_slot: ic_size
+  - slot_was_set:
+    - ic_size: small
+  - slot_was_set:
+    - requested_slot: ic_flavors
+  - slot_was_set:
+    - ic_flavors: [chocolate]
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_order
+  - action: action_show_order_summary
+  - intent: goodbye
+  - action: utter_goodbye
+
+
+- story: User asks to stop form and confirms
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: buy_ic
+  - action: utter_form_instructions
+  - action: ic_form
+  - active_loop: ic_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Alexandra 
+  - slot_was_set:
+    - requested_slot: ic_type
+  - intent: stop
+  - action: utter_ask_end_order
+  - or: 
+    - intent: stop
+    - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - action: action_reset_slots
+  - action: utter_ended_order
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: User asks to stop form but does not confirm
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_capability
+  - action: utter_capability
+  - intent: buy_ic
+  - action: utter_form_instructions
+  - action: ic_form
+  - active_loop: ic_form
+  - intent: stop
+  - action: utter_ask_end_order
+  - intent: deny
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Prasad
+  - slot_was_set:
+    - requested_slot: ic_type
+  - slot_was_set:
+    - ic_type: cone
+  - slot_was_set:
+    - requested_slot: ic_size
+  - slot_was_set:
+    - ic_size: small
+  - slot_was_set:
+    - requested_slot: ic_flavors
+  - slot_was_set:
+    - ic_flavors: [vanilla]
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_order
+  - action: action_show_order_summary
+
+
+- story: User asks for recommendations in middle of order
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: buy_ic
+  - action: utter_form_instructions
+  - action: ic_form
+  - active_loop: ic_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Barry
+  - slot_was_set:
+    - requested_slot: ic_type
+  - slot_was_set:
+    - ic_type: cone
+  - slot_was_set:
+    - requested_slot: ic_size
+  - slot_was_set:
+    - ic_size: large
+  - slot_was_set:
+    - requested_slot: ic_flavors
+  - intent: get_recommendations
+  - action: action_show_recommendations
+  - action: ic_form
+  - active_loop: ic_form
+  - slot_was_set:
+    - requested_slot: ic_flavors
+  - slot_was_set:
+    - ic_flavors: [mint, chocolate]
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_submit_order
+  - action: action_show_order_summary
+  - intent: goodbye
+  - action: utter_goodbye
+
+
+- story: interactive_story_1 (stops the form)
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: buy_ic
+  - action: utter_form_instructions
+  - action: ic_form
+  - active_loop: ic_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Praveen
+  - slot_was_set:
+    - name: Praveen
+  - slot_was_set:
+    - requested_slot: ic_type
+  - slot_was_set:
+    - ic_type: cup
+  - slot_was_set:
+    - ic_type: cup
+  - slot_was_set:
+    - requested_slot: ic_size
+  - slot_was_set:
+    - ic_size: small
+  - slot_was_set:
+    - ic_size: small
+  - slot_was_set:
+    - requested_slot: ic_flavors
+  - intent: stop
+  - action: utter_ask_end_order
+  - intent: affirm
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_reset_slots
+  - action: utter_ended_order
+  - intent: goodbye
+  - action: utter_goodbye

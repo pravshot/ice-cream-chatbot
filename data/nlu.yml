@@ -1,0 +1,138 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - YES
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+    - who are you?
+- intent: ask_capability
+  examples: |
+    - what can you do?
+    - what can you do for me?
+    - what do u do
+    - how can u help me
+- intent: out_of_scope
+  examples: |
+    - what's the weather
+    - something completely random
+    - i want to book tickets to a concert
+- intent: stop
+  examples: |
+    - stop
+    - please end the order
+    - nevermind
+    - i want to stop
+    - cancel the order
+    - exit this order
+    - stop the order
+- intent: buy_ic
+  examples: |
+    - buy ice cream
+    - I want ice cream
+    - I would like some ice cream
+    - can i have ice cream?
+    - i will order ice cream
+    - order ice cream
+    - please order ice cream
+    - i want to order ice cream
+- intent: cup
+  examples: |
+    - cup
+    - i want cup
+    - cup please
+- intent: cone
+  examples: |
+    - cone
+    - i want cone
+    - cone please
+- intent: get_recommendations
+  examples: |
+    - get recommendations
+    - i want recommendations
+    - what flavors do you suggest
+    - what flavors are good?
+    - which ice cream is the best
+    - what are ur best sellers?
+    - what are the favorites?
+- intent: inform
+  examples: |
+    - [Praveen](PERSON)
+    - [Kiran](PERSON)
+    - [Prasad](PERSON)
+    - i would like a [small](ic_size) [cup](ic_type) of [chocolate](ic_flavor).
+    - i would like a [small](ic_size) [cone](ic_type) of [rocky road](ic_flavor).
+    - can i have [s]{"entity": "ic_size", "value": "small"} ice cream.
+    - i want [l]{"entity": "ic_size", "value": "large"} ice cream.
+    - i want [large](ic_size) ice cream.
+    - I want [1 scoop]{"entity": "ic_size", "value": "small"} of [strawberry](ic_flavor) ice cream.
+    - Can i have [2 scoops]{"entity": "ic_size", "value": "large"} with [vanilla](ic_flavor) and [rocky road](ic_flavor)?
+    - I would like [2 scoop]{"entity": "ic_size", "value": "large"} of [mint](ic_flavor) ice cream.
+    - [vanilla](ic_flavor) and [chocolate](ic_flavor)
+    - [rocky road](ic_flavor), [mint](ic_flavor)
+    - [s]{"entity": "ic_size", "value": "small"}
+    - [l]{"entity": "ic_size", "value": "large"}
+    - [small](ic_size)
+- synonym: small
+  examples: |
+    - s
+    - 1 scoop
+    - 1 scoops
+- synonym: large
+  examples: |
+    - l
+    - 2 scoops
+    - 2 scoop
+- lookup: ic_flavor
+  examples: |
+    - vanilla
+    - chocolate
+    - strawberry
+    - mint
+    - rocky road

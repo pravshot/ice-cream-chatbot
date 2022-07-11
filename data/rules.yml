@@ -1,0 +1,64 @@
+version: "3.1"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: State the bot's capabilities anytime the user asks for it
+  steps:
+  - intent: ask_capability
+  - action: utter_capability
+
+- rule: Handle out of scope intents
+  steps:
+  - intent: out_of_scope
+  - action: utter_please_rephrase
+
+- rule: Show recommendations whenever user asks for them
+  steps:
+  - intent: get_recommendations
+  - action: action_show_recommendations
+
+- rule: Activate ice cream form
+  steps:
+  - intent: buy_ic
+  - action: utter_form_instructions
+  - action: ic_form
+  - active_loop: ic_form
+
+- rule: Submit ice cream form
+  condition:
+  - active_loop: ic_form
+  steps:
+  - action: ic_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_submit_order
+  - action: action_show_order_summary
+
+- rule: Interruption(bot challenge) in ice cream form
+  condition:
+  - active_loop: ic_form
+  steps: 
+  - intent: bot_challenge
+  - action: utter_iamabot
+  - action: ic_form
+  - active_loop: ic_form
+
+- rule: Interruption(ask recommedation) in ice cream form
+  condition:
+  - active_loop: ic_form
+  steps:
+  - intent: get_recommendations
+  - action: action_show_recommendations
+  - action: ic_form
+  - active_loop: ic_form

@@ -1,0 +1,106 @@
+version: '3.1'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+intents:
+  - affirm
+  - ask_capability
+  - bot_challenge
+  - buy_ic
+  - cone
+  - cup
+  - deny
+  - get_recommendations
+  - goodbye
+  - greet
+  - inform
+  - out_of_scope
+  - stop
+
+entities:
+  - ic_size
+  - PERSON
+  - ic_flavor
+
+forms:
+  ic_form:
+    required_slots:
+    - name
+    - ic_type
+    - ic_size
+    - ic_flavors
+
+slots:
+  name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: PERSON
+  ic_type:
+    type: categorical
+    values:
+    - cup
+    - cone
+    influence_conversation: true
+    mappings:
+    - type: from_intent
+      intent: cup
+      value: cup
+    - type: from_intent
+      intent: cone
+      value: cone
+      conditions:
+      - active_loop: ic_form
+        requested_slot: ic_type
+  ic_size:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: ic_size
+  ic_flavors:
+    type: list
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: ic_flavor
+
+responses:
+  utter_greet:
+  - text: Hey! How can I help you?
+  - text: Hi! What can I do for you today?
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_ask_end_order:
+  - text: Are you sure you want to end the order?
+  utter_ask_name:
+  - text: What is your name? First and last name please.
+  utter_ask_ic_size:
+  - text: What size of ice cream do you want? We have small(1 scoop) and large(2 scoops).
+  utter_submit_order:
+  - text: Your order has been placed. Thank you!
+  utter_capability:
+  - text: I can help you order ice cream.
+  utter_please_rephrase:
+  - text: I'm not sure I understand. Please rephrase.
+  utter_ended_order:
+  - text: I ended the order for you.
+  utter_form_instructions:
+  - text: Sure thing! To order ice cream, I will need you to answer a few questions.
+
+actions:
+- action_ask_ic_flavors
+- action_ask_ic_type
+- action_reset_slots
+- action_show_order_summary
+- action_show_recommendations
+- utter_ask_end_order
+- utter_ended_order
+- utter_form_instructions
+- utter_goodbye
+- utter_greet
+- validate_ic_form
