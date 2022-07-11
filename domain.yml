@@ -4,24 +4,25 @@ session_config:
   carry_over_slots_to_new_session: true
 
 intents:
-  - affirm
-  - ask_capability
-  - bot_challenge
-  - buy_ic
-  - cone
-  - cup
-  - deny
-  - get_recommendations
-  - goodbye
-  - greet
-  - inform
-  - out_of_scope
-  - stop
+- affirm
+- ask_capability
+- bot_challenge
+- buy_ic
+- cone
+- cup
+- deny
+- get_recommendations
+- goodbye
+- greet
+- inform
+- out_of_scope
+- stop
 
 entities:
-  - ic_size
-  - PERSON
-  - ic_flavor
+- ic_size
+- ic_flavor
+- ic_type
+- PERSON
 
 forms:
   ic_form:
@@ -54,6 +55,8 @@ slots:
       conditions:
       - active_loop: ic_form
         requested_slot: ic_type
+    - type: from_entity
+      entity: ic_type
   ic_size:
     type: text
     influence_conversation: true
@@ -91,7 +94,7 @@ responses:
   - text: I ended the order for you.
   utter_form_instructions:
   - text: Sure thing! To order ice cream, I will need you to answer a few questions.
-
+  
 actions:
 - action_ask_ic_flavors
 - action_ask_ic_type
@@ -103,4 +106,5 @@ actions:
 - utter_form_instructions
 - utter_goodbye
 - utter_greet
+- utter_submit_order
 - validate_ic_form

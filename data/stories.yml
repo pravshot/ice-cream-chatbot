@@ -331,3 +331,31 @@ stories:
   - action: utter_ended_order
   - intent: goodbye
   - action: utter_goodbye
+
+- story: interactive_story_1 (multiple slots set at once)
+  steps:
+  - intent: buy_ic
+  - action: utter_form_instructions
+  - action: ic_form
+  - active_loop: ic_form
+  - slot_was_set:
+    - requested_slot: name
+  - intent: inform
+    entities:
+    - ic_flavor: strawberry
+    - ic_type: cup
+    - ic_size: small
+    - PERSON: Lionel Messi
+  - slot_was_set:
+    - name: Lionel Messi
+  - slot_was_set:
+    - ic_type: cup
+  - slot_was_set:
+    - ic_size: small
+  - slot_was_set:
+    - ic_flavors:
+      - strawberry
+  - action: utter_submit_order
+  - action: action_show_order_summary
+  - intent: goodbye
+  - action: utter_goodbye
