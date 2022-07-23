@@ -121,6 +121,8 @@ nlu:
     - [small](ic_size)
     - I am [Lionel Messi](PERSON). I want a [large](ic_size) [cup](ic_type) of [vanilla](ic_flavor) and [chocolate](ic_flavor) ice cream.
     - I am [Lionel Messi](PERSON). I want a [small](ic_size) [cone](ic_type) of [strawberry](ic_flavor) ice cream.
+    - I'll have [vanilla](ic_flavor) and [chocolate](ic_flavor).
+    - I'll have [strawberry](ic_flavor)
 - synonym: small
   examples: |
     - s
